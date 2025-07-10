@@ -33,7 +33,7 @@ This project is fully UI-based and designed around creativity, emotion, and mini
 
 ## 🚀 Live Preview
 
-🔗 [https://rishika-glitch06.github.io/vibescape](https://rishika-glitch06.github.io/vibescape)
+🔗 [https://rishika-glitch06.github.io/vibe-scape/](https://rishika-glitch06.github.io/vibe-scape/)
 
 ---
 
@@ -47,9 +47,3 @@ This is a **frontend concept project** and is still being improved. All content 
 
 **Rishika**  
 GitHub: [@rishika-glitch06](https://github.com/rishika-glitch06)
-
----
-
-## 📄 License
-
-This project is free for learning and inspiration.
