@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>VibeScape | AI Moodboard</title>
+  <style>
+    :root {
+      --grad-start: #ffd1dc;
+      --grad-end: #ffe6f0;
+      --text: #111;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: var(--text);
+      background: linear-gradient(135deg, var(--grad-start), var(--grad-end));
+      text-align: center;
+      padding: 80px 20px;
+      min-height: 100vh;
+      animation: fadeIn 1.2s ease-in;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 40px;
+      background: transparent;
+      font-size: 20px;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      margin-left: 28px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #555;
+    }
+
+    nav h1 {
+      font-weight: bold;
+      animation: dropDown 1s ease-out;
+    }
+
+    h2 {
+      font-size: 52px;
+      margin-bottom: 20px;
+      animation: dropDown 1s ease-out;
+    }
+
+    h3 {
+      font-style: italic;
+      color: #444;
+      margin-bottom: 40px;
+      animation: fadeUp 1.4s ease-in;
+    }
+
+    p.desc {
+      font-size: 20px;
+      color: #333;
+      max-width: 650px;
+      margin: 0 auto 60px;
+      animation: fadeUp 1.6s ease-in;
+    }
+
+    .input-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      animation: blurIn 1.8s ease-out forwards;
+      filter: blur(8px);
+      opacity: 0;
+    }
+
+    input {
+      width: 60%;
+      max-width: 420px;
+      padding: 14px 20px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      background: #fff;
+      color: #000;
+    }
+
+    button {
+      padding: 14px 34px;
+      font-size: 18px;
+      font-weight: bold;
+      background: #ff99bb;
+      color: #000;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #ff80aa;
+    }
+
+    /* ---------- Animations ---------- */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes dropDown {
+      from { opacity: 0; transform: translateY(-40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes blurIn {
+      0%   { filter: blur(8px); opacity: 0; }
+      100% { filter: blur(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <h1>VibeScape</h1>
+    <div>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Inspire Me</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section style="margin-top:100px">
+    <h2>AI Moodboard</h2>
+    <h3>“Your vibe paints the canvas of your day.”</h3>
+    <p class="desc">
+      VibeScape turns any mood you type into songs, images, quotes, and movies that match your feeling.
+    </p>
+
+    <div class="input-wrap">
+      <label for="moodInput"><strong>Tell me your mood:</strong></label>
+      <input id="moodInput" type="text" placeholder="e.g., calm night, heartbreak, hopeful morning" />
+      <button onclick="submitMood()">Generate Vibe</button>
+    </div>
+  </section>
+
+  <script>
+    function submitMood() {
+      const mood = document.getElementById('moodInput').value.trim();
+      if (!mood) {
+        alert('Please enter your mood');
+        return;
+      }
+      localStorage.setItem('userMood', mood);
+      location.href = 'mood.html';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VibeScape | Your Mood Results</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #ffccdd, #ffe6f2);
+      color: #000;
+      text-align: center;
+      overflow-x: hidden;
+      animation: fadeIn 1.5s ease;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin: 30px 0 10px;
+      animation: dropIn 1s ease;
+    }
+
+    h2 {
+      font-size: 32px;
+      margin: 60px 0 25px;
+      border-bottom: 2px solid #000;
+      display: inline-block;
+      padding-bottom: 6px;
+      animation: dropIn 1s ease;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 0 20px;
+    }
+
+    .card, .quote-box {
+      background: #fff;
+      color: #000;
+      border-radius: 100px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      width: 280px;
+      padding: 20px;
+      text-align: left;
+      animation: blurToClear 1.2s ease;
+    }
+
+    .quote-box {
+      font-style: italic;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 120px;
+    }
+
+    @keyframes dropIn {
+      from { opacity: 0; transform: translateY(-40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes blurToClear {
+      from {
+        filter: blur(10px);
+        transform: scale(0.9);
+        opacity: 0;
+      }
+      to {
+        filter: blur(0);
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    h4 {
+      margin-bottom: 8px;
+      font-size: 20px;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Your Moodboard</h1>
+  <p id="moodLine">Loading mood...</p>
+
+  <!-- Movies -->
+  <h2>🎬 Movies</h2>
+  <div class="cards" id="movies"></div>
+
+  <!-- Songs -->
+  <h2>🎧 Songs</h2>
+  <div class="cards" id="songs"></div>
+
+  <!-- Quotes -->
+  <h2>📜 Quotes</h2>
+  <div class="cards" id="quotes"></div>
+
+<script>
+// ---------------- Mood Text -----------------
+const mood = localStorage.getItem('userMood') || 'calm';
+document.getElementById('moodLine').textContent = `Detected mood: "${mood}"`;
+
+// ---------------- Movies -----------------
+const movies = [
+  { 
+    title: 'Tamasha', 
+    desc: 'A man struggles to break free from societal expectations and rediscover his true passion for storytelling.' 
+  },
+  { 
+    title: 'Wake Up Sid', 
+    desc: 'A young man in Mumbai learns responsibility and purpose through self-discovery and unexpected friendships.' 
+  },
+  { 
+    title: 'Rockstar', 
+    desc: 'An aspiring musician finds that fame comes at a personal cost as love and pain drive his art.' 
+  },
+  { 
+    title: 'Yeh Jawaani Hai Deewani', 
+    desc: 'A journey of friendship, love, and personal growth as four friends travel and evolve through life\'s phases.' 
+  }
+];
+
+const mvWrap = document.getElementById('movies');
+movies.forEach(m => {
+  mvWrap.innerHTML += `
+    <div class="card">
+      <h4>${m.title}</h4>
+      <p>${m.desc}</p>
+    </div>`;
+});
+
+// ---------------- Songs (Static Mood-Based Info) -----------------
+const songs = [
+  { 
+    title: 'Let Her Go', 
+    artist: 'Passenger', 
+    desc: 'A soulful acoustic ballad that reflects on love, loss, and regret.' 
+  },
+  { 
+    title: 'Night Changes', 
+    artist: 'One Direction', 
+    desc: 'Melancholic yet hopeful, this song explores the passage of time and growing up.' 
+  },
+  { 
+    title: 'Fix You', 
+    artist: 'Coldplay', 
+    desc: 'A deeply emotional song that speaks about healing and support during tough times.' 
+  }
+];
+
+const songsWrap = document.getElementById('songs');
+songs.forEach(s => {
+  songsWrap.innerHTML += `
+    <div class="card">
+      <h4>${s.title} — ${s.artist}</h4>
+      <p>${s.desc}</p>
+    </div>`;
+});
+
+// ---------------- Quotes -----------------
+const quotes = [
+  "Every moment is a fresh beginning.",
+  "Believe you can and you're halfway there.",
+  "Your vibe attracts your tribe.",
+  "Turn your wounds into wisdom.",
+  "Be a voice, not an echo.",
+  "Don't be pushed by your problems. Be led by your dreams.",
+  "Happiness is a direction, not a place.",
+];
+
+const quoteWrap = document.getElementById('quotes');
+quotes.sort(() => 0.5 - Math.random()).slice(0, 4).forEach(q => {
+  quoteWrap.innerHTML += `<div class="quote-box">${q}</div>`;
+});
+</script>
+
+</body>
+</html>
